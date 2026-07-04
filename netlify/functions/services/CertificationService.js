@@ -7,6 +7,7 @@ const MemberRepository = require('../repositories/MemberRepository');
 const AuditService = require('./AuditService');
 const Logger = require('../utils/Logger');
 const Certification = require('../models/Certification');
+const NotificationService = require('../services/NotificationService');
 
 class CertificationService {
   constructor() {
@@ -124,6 +125,13 @@ class CertificationService {
     
     Logger.info(`CertificationService.approveCertification: OK - ${certId}`);
     
+    // Send notification
+    try {
+      await NotificationService.notifyCertificationApproved(member, cert.level);
+    } catch (err) {
+      Logger.warn(`Notification failed: ${err.message}`);
+    }
+    
     return approved;
   }
   
@@ -153,7 +161,15 @@ class CertificationService {
         reason: reason
       }
     });
-    
+    // Fetch member for notification
+    const member = await this.memberRepo.findById(cert.member_id);
+    if (member) {
+      try {
+        await NotificationService.notifyCertificationRejected(member, reason);
+      } catch (err) {
+        Logger.warn(`Notification failed: ${err.message}`);
+      }
+    }
     Logger.info(`CertificationService.rejectCertification: OK - ${certId}`);
     
     return rejected;
