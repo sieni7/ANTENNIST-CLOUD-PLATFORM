@@ -1,0 +1,21 @@
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Dépendances
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Netlify
+.netlify/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (optionnel - décommenter si uploads ne doit pas être versionné)
+# uploads/
