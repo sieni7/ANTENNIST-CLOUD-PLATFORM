@@ -1,3 +1,11 @@
+/**
+ * Hello World - Fonction de test Netlify
+ * Vérifie que l'infrastructure serverless fonctionne
+ *
+ * @endpoint GET /api/hello
+ * @version 0.0.1
+ */
+
 exports.handler = async (event, context) => {
   return {
     statusCode: 200,
@@ -6,10 +14,15 @@ exports.handler = async (event, context) => {
       'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({
-      message: 'FITA Antennist API - V0',
+      message: '✅ Antennist Cloud Platform V0 - API fonctionnelle',
       version: '0.0.1',
-      status: 'building',
-      timestamp: new Date().toISOString()
+      status: 'ready',
+      timestamp: new Date().toISOString(),
+      endpoints: {
+        members: '/api/members',
+        stats:   '/api/stats',
+        health:  '/api/health'
+      }
     })
   };
 };

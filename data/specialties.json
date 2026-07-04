@@ -1,0 +1,9 @@
+{
+  "specialties": [
+    { "id": "tnt", "label": "TNT Terrestre", "icon": "📡" },
+    { "id": "satellite", "label": "Satellite / Parabole", "icon": "🛰️" },
+    { "id": "mixte", "label": "TNT + Satellite", "icon": "📡🛰️" },
+    { "id": "collective", "label": "Installation Collective", "icon": "🏢" },
+    { "id": "depannage", "label": "Dépannage Signal", "icon": "🔧" }
+  ]
+}

@@ -3,33 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FITA Antennist Cloud Platform - Plateforme cloud de gestion d'antennes">
-  <title>FITA Antennist Cloud Platform</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Antennist Cloud Platform - FITA</title>
+  <meta name="description" content="Plateforme de référencement des antennistes certifiés FITA">
+  <link rel="icon" href="/assets/favicon.ico">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a1628;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      text-align: center;
+    }
+    .logo {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #1a8cff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      color: #8899aa;
+      margin-bottom: 30px;
+    }
+    .status {
+      display: inline-block;
+      background: rgba(26, 140, 255, 0.2);
+      border: 1px solid rgba(26, 140, 255, 0.3);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-size: 0.9rem;
+      color: #6af;
+      margin-bottom: 30px;
+    }
+    .status .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #00ff88;
+      border-radius: 50%;
+      margin-right: 10px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 30px 0 40px;
+    }
+    .feature {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      border-color: rgba(26, 140, 255, 0.4);
+    }
+    .feature .icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .feature .label { font-size: 0.9rem; color: #8899aa; }
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #1a8cff, #0055cc);
+      padding: 12px 32px;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      padding: 12px 32px;
+      border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.14); }
+    .build-info {
+      font-size: 0.8rem;
+      color: #445566;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+    }
+    .build-info a { color: #1a8cff; text-decoration: none; }
+    .build-info a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>📡 FITA Antennist Cloud Platform</h1>
-    <p>Plateforme cloud de gestion d'antennes</p>
-  </header>
+  <div class="container">
+    <div class="logo">📡</div>
+    <h1>Antennist Cloud Platform</h1>
+    <p class="subtitle">Réseau national des antennistes certifiés FITA</p>
 
-  <main>
-    <section id="status">
-      <h2>Statut</h2>
-      <p>🚧 Plateforme en construction — <strong>V0.0.1</strong></p>
-    </section>
+    <div class="status">
+      <span class="dot"></span>
+      Infrastructure V0 — Opérationnelle
+    </div>
 
-    <section id="api-test">
-      <h2>Test API</h2>
-      <button id="testApiBtn" onclick="testApi()">Tester l'API</button>
-      <pre id="apiResult"></pre>
-    </section>
-  </main>
+    <div class="features">
+      <div class="feature">
+        <span class="icon">📡</span>
+        <span class="label">Référencement</span>
+      </div>
+      <div class="feature">
+        <span class="icon">🗺️</span>
+        <span class="label">Géolocalisation</span>
+      </div>
+      <div class="feature">
+        <span class="icon">📇</span>
+        <span class="label">Annuaire Public</span>
+      </div>
+      <div class="feature">
+        <span class="icon">📱</span>
+        <span class="label">QR Code Pro</span>
+      </div>
+    </div>
 
-  <footer>
-    <p>&copy; 2026 FITA — ANTENNIST Cloud Platform</p>
-  </footer>
+    <div class="cta-group">
+      <a href="/annuaire.html" class="btn-primary" id="btnAnnuaire">📋 Annuaire</a>
+      <a href="/referencement.html" class="btn-secondary" id="btnInscription">➕ Je m'inscris</a>
+    </div>
 
-  <script src="js/main.js"></script>
+    <div class="build-info">
+      Version 0.0.1 &bull; 🟢 Production Ready &bull;
+      <a href="https://github.com/sieni7/ANTENNIST-CLOUD-PLATFORM" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
 </body>
 </html>

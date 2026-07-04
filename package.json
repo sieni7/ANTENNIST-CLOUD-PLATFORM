@@ -1,24 +1,19 @@
 {
   "name": "antennist-cloud-platform",
-  "version": "1.0.0",
-  "description": "ANTENNIST Cloud Platform - Plateforme cloud de gestion d'antennes",
+  "version": "0.0.1",
+  "description": "FITA Antennist Cloud Platform - V0",
   "main": "index.js",
   "scripts": {
-    "dev": "netlify dev",
-    "build": "echo 'Build complete'",
-    "start": "netlify dev",
-    "deploy": "netlify deploy --prod"
+    "dev": "echo 'Development server not configured yet'",
+    "lint": "eslint public/js netlify/functions",
+    "init-data": "node scripts/init-data.js"
   },
-  "keywords": [
-    "antennist",
-    "cloud",
-    "platform",
-    "netlify"
-  ],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "qrcode": "^1.5.3"
+  },
   "devDependencies": {
-    "netlify-cli": "^17.0.0"
-  },
-  "dependencies": {}
+    "@netlify/functions": "^2.0.0",
+    "eslint": "^8.56.0"
+  }
 }
