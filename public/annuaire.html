@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annuaire des antennistes - Antennist Cloud Platform</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <link rel="stylesheet" href="/css/annuaire.css">
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #map { height: 400px; border-radius: 12px; margin-bottom: 20px; }
+    .leaflet-control-attribution { font-size: 10px; color: #666; }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="icon">📡</span>
+        <span>Antennist</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/annuaire.html" class="active">Annuaire</a></li>
+        <li><a href="/referencement.html" class="btn btn-primary btn-sm">📡 S'inscrire</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HEADER ===== -->
+  <section style="padding: 90px 20px 30px;">
+    <div class="container">
+      <h1>📋 Annuaire des antennistes</h1>
+      <p class="text-muted">Trouvez un technicien certifié près de chez vous</p>
+    </div>
+  </section>
+
+  <!-- ===== FILTRES ===== -->
+  <section style="padding: 0 20px 20px;">
+    <div class="container">
+      <div class="filters" style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
+        <select id="filterRegion" style="flex: 1; min-width: 150px; padding: 10px 14px; background: var(--color-dark-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: #fff;">
+          <option value="">Toutes les régions</option>
+        </select>
+        <select id="filterSpecialty" style="flex: 1; min-width: 150px; padding: 10px 14px; background: var(--color-dark-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: #fff;">
+          <option value="">Toutes les spécialités</option>
+        </select>
+        <input type="text" id="filterSearch" placeholder="🔍 Rechercher..." style="flex: 2; min-width: 200px; padding: 10px 14px; background: var(--color-dark-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: #fff;">
+        <button id="filterApply" class="btn btn-primary">Filtrer</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP ===== -->
+  <section style="padding: 0 20px 20px;">
+    <div class="container">
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- ===== LISTE ===== -->
+  <section style="padding: 0 20px 40px;">
+    <div class="container">
+      <div id="membersGrid" class="grid">
+        <!-- Rempli par JavaScript -->
+      </div>
+      <div id="loadingSpinner" class="text-center" style="padding: 40px;">
+        <div class="spinner"></div>
+        <p class="text-muted">Chargement...</p>
+      </div>
+      <div id="noResults" class="text-center hidden" style="padding: 40px;">
+        <p style="font-size: 2rem;">🔍</p>
+        <p class="text-muted">Aucun antenniste trouvé dans cette région</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="padding: 40px 20px; border-top: 1px solid var(--color-border);">
+    <div class="container">
+      <div style="text-align: center; font-size: var(--font-size-small); color: var(--color-text-muted);">
+        &copy; 2026 Antennist Cloud Platform - FITA
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/annuaire.js"></script>
+</body>
+</html>

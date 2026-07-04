@@ -1,0 +1,83 @@
+/**
+ * Annuaire - Styles spécifiques
+ */
+
+.member-card {
+  background: var(--color-dark-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.member-card:hover {
+  border-color: rgba(26, 140, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.member-card .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-border);
+  margin-bottom: 12px;
+}
+
+.member-card .name {
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.member-card .specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+.member-card .specialties .badge {
+  font-size: 0.7rem;
+}
+
+.member-card .location {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  margin: 8px 0;
+}
+
+.member-card .stats {
+  display: flex;
+  gap: 16px;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.member-card .stats .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.member-card .contact-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.member-card .contact-buttons .btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: var(--font-size-small);
+  justify-content: center;
+}
+
+/* Cartes sur mobile */
+@media (max-width: 768px) {
+  .member-card .contact-buttons {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil antenniste - Antennist Cloud Platform</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <link rel="stylesheet" href="/css/profil.css">
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #profileMap { height: 200px; border-radius: var(--radius-sm); }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="icon">📡</span>
+        <span>Antennist</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/annuaire.html">Annuaire</a></li>
+        <li><a href="/referencement.html" class="btn btn-primary btn-sm">📡 S'inscrire</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== PROFIL ===== -->
+  <section style="padding: 90px 20px 30px;">
+    <div class="container">
+      <div id="profileContainer">
+        <div id="loadingSpinner" class="text-center" style="padding: 40px;">
+          <div class="spinner"></div>
+          <p class="text-muted">Chargement du profil...</p>
+        </div>
+        
+        <div id="profileContent" class="hidden">
+          <!-- Header -->
+          <div class="profile-header">
+            <img id="profilePhoto" src="/assets/default-avatar.png" alt="Photo" class="profile-avatar">
+            <div class="profile-header-info">
+              <h1 id="profileName">Antenniste</h1>
+              <div id="profileBadge">
+                <span class="badge badge-primary">📡 Référencé</span>
+              </div>
+              <div id="profileFitaNumber" class="profile-number">ANT-2026-00000</div>
+            </div>
+          </div>
+          
+          <!-- Body -->
+          <div class="profile-body">
+            <!-- Spécialités -->
+            <div class="profile-section">
+              <h2>📡 Spécialités</h2>
+              <div id="profileSpecialties" class="specialties-list"></div>
+            </div>
+            
+            <!-- Expérience -->
+            <div class="profile-section">
+              <h2>📅 Expérience</h2>
+              <p id="profileExperience">0 ans d'expérience</p>
+              <p id="profileEquipment" class="text-muted">Équipements: Aucun</p>
+            </div>
+            
+            <!-- Localisation -->
+            <div class="profile-section">
+              <h2>📍 Localisation</h2>
+              <p id="profileLocation">Non renseigné</p>
+              <div id="profileMap"></div>
+            </div>
+            
+            <!-- Statistiques -->
+            <div class="profile-section">
+              <h2>📊 Statistiques</h2>
+              <div class="stats-grid">
+                <div class="stat-item"><span class="number" id="statViews">0</span><span class="label">Vues</span></div>
+                <div class="stat-item"><span class="number" id="statContacts">0</span><span class="label">Contacts</span></div>
+                <div class="stat-item"><span class="number" id="statRating">0</span><span class="label">⭐ Note</span></div>
+              </div>
+            </div>
+            
+            <!-- Contact -->
+            <div class="profile-section">
+              <h2>📞 Contact</h2>
+              <div class="contact-buttons">
+                <a id="profilePhone" href="tel:" class="btn btn-primary btn-block">📞 Appeler</a>
+                <a id="profileWhatsApp" href="https://wa.me/" target="_blank" class="btn btn-success btn-block">💬 WhatsApp</a>
+              </div>
+            </div>
+            
+            <!-- QR Code -->
+            <div class="profile-section text-center">
+              <h2>📱 QR Code</h2>
+              <div id="qrContainer" style="display: flex; justify-content: center; margin: 10px 0;"></div>
+              <p class="text-muted" style="font-size: var(--font-size-small);">Scannez pour voir le profil</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="padding: 40px 20px; border-top: 1px solid var(--color-border); margin-top: 40px;">
+    <div class="container">
+      <div style="text-align: center; font-size: var(--font-size-small); color: var(--color-text-muted);">
+        &copy; 2026 Antennist Cloud Platform - FITA
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/profil.js"></script>
+</body>
+</html>

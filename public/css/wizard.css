@@ -1,0 +1,126 @@
+/**
+ * Wizard - Styles spécifiques
+ */
+
+.wizard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-dark-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  padding: 30px;
+}
+
+.wizard-progress {
+  margin-bottom: 30px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step-label {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.step-label.active {
+  color: var(--color-primary-light);
+}
+
+.step {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: 5px;
+}
+
+.step p.text-muted {
+  margin-bottom: 20px;
+}
+
+/* Grille des spécialités */
+.specialties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.specialty-item {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.specialty-item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.specialty-label {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-small);
+  transition: all 0.2s ease;
+}
+
+.specialty-item input:checked ~ .specialty-label {
+  background: rgba(26, 140, 255, 0.2);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.summary-card {
+  background: rgba(0,0,0,0.2);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.summary-item {
+  margin-bottom: 10px;
+}
+
+.summary-label {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.summary-value {
+  font-weight: 500;
+}

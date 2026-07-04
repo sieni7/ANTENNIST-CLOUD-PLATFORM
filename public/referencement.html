@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Référencement - Antennist Cloud Platform</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <link rel="stylesheet" href="/css/wizard.css">
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #locationMap { height: 250px; border-radius: var(--radius-sm); margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="icon">📡</span>
+        <span>Antennist</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/annuaire.html">Annuaire</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== WIZARD ===== -->
+  <section style="padding: 80px 20px 40px;">
+    <div class="container">
+      <div class="wizard-container">
+        <!-- Progress -->
+        <div class="wizard-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 25%;"></div>
+          </div>
+          <div class="progress-steps">
+            <span class="step-label active" data-step="1">👤 Identité</span>
+            <span class="step-label" data-step="2">📡 Spécialités</span>
+            <span class="step-label" data-step="3">📍 Localisation</span>
+            <span class="step-label" data-step="4">✅ Publication</span>
+          </div>
+        </div>
+        
+        <!-- Steps -->
+        <div id="stepContainer">
+          <!-- Étape 1 - Identité -->
+          <div class="step active" data-step="1">
+            <h2>👤 Qui êtes-vous ?</h2>
+            <p class="text-muted">Renseignez vos informations personnelles</p>
+            
+            <div class="form-group">
+              <label>Prénom *</label>
+              <input type="text" id="firstName" placeholder="Votre prénom" required>
+            </div>
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" id="lastName" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label>Téléphone *</label>
+              <input type="tel" id="phone" placeholder="Ex: +2250708123456" required>
+              <div class="error-text" id="phoneError"></div>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp (optionnel)</label>
+              <input type="tel" id="whatsapp" placeholder="Même que téléphone">
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end;">
+              <button class="btn btn-primary" onclick="nextStep()">Continuer →</button>
+            </div>
+          </div>
+          
+          <!-- Étape 2 - Spécialités -->
+          <div class="step" data-step="2">
+            <h2>📡 Que faites-vous ?</h2>
+            <p class="text-muted">Sélectionnez vos spécialités</p>
+            
+            <div id="specialtiesContainer" class="specialties-grid">
+              <!-- Rempli par JavaScript -->
+            </div>
+            
+            <div class="form-group">
+              <label>Années d'expérience *</label>
+              <input type="number" id="experienceYears" min="0" max="50" placeholder="Ex: 5">
+            </div>
+            <div class="form-group">
+              <label>Équipements (optionnel)</label>
+              <input type="text" id="equipment" placeholder="Satfinder, testeur, échelle...">
+            </div>
+            
+            <div style="display: flex; justify-content: space-between;">
+              <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+              <button class="btn btn-primary" onclick="nextStep()">Continuer →</button>
+            </div>
+          </div>
+          
+          <!-- Étape 3 - Localisation -->
+          <div class="step" data-step="3">
+            <h2>📍 Où intervenez-vous ?</h2>
+            <p class="text-muted">Renseignez votre zone d'intervention</p>
+            
+            <div class="form-group">
+              <label>Région *</label>
+              <select id="region" required>
+                <option value="">Sélectionnez une région</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Ville / Commune *</label>
+              <input type="text" id="city" placeholder="Ex: Abidjan, Yopougon" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Votre position (optionnel mais recommandé)</label>
+              <button id="getLocationBtn" class="btn btn-secondary btn-sm" style="margin-bottom: 10px;">📍 Obtenir ma position</button>
+              <div id="locationMap"></div>
+              <input type="hidden" id="lat">
+              <input type="hidden" id="lng">
+            </div>
+            
+            <div style="display: flex; justify-content: space-between;">
+              <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+              <button class="btn btn-primary" onclick="nextStep()">Continuer →</button>
+            </div>
+          </div>
+
+          <!-- Étape 4 - Confirmation -->
+          <div class="step" data-step="4">
+            <h2>✅ Confirmation</h2>
+            <p class="text-muted">Vérifiez vos informations avant de valider</p>
+            
+            <div class="summary-card" id="summaryCard">
+               <!-- Rempli dynamiquement -->
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+              <button class="btn btn-secondary" onclick="prevStep()">← Modifier</button>
+              <button class="btn btn-success" id="submitBtn" onclick="submitForm()">Soumettre l'inscription</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="padding: 40px 20px; border-top: 1px solid var(--color-border); margin-top: 40px;">
+    <div class="container">
+      <div style="text-align: center; font-size: var(--font-size-small); color: var(--color-text-muted);">
+        &copy; 2026 Antennist Cloud Platform - FITA
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/wizard.js"></script>
+</body>
+</html>
