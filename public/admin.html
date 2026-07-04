@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration FITA - Antennist Cloud Platform</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="icon">📡</span>
+        <span>Antennist</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/annuaire.html">Annuaire</a></li>
+        <li><a href="/admin.html" class="active">Admin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== ADMIN ===== -->
+  <section style="padding: 90px 20px 40px;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <h1>🔧 Administration FITA</h1>
+          <p class="text-muted">Gestion des certifications et des membres</p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary btn-sm" onclick="loadView('pending')">⏳ En attente</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadView('certified')">🎖️ Certifiés</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadView('members')">👷 Membres</button>
+        </div>
+      </div>
+      
+      <!-- ===== STATS ===== -->
+      <div class="admin-stats" id="adminStats">
+        <div class="admin-stat-card">
+          <span class="number" id="statTotal">0</span>
+          <span class="label">Total membres</span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="number" id="statPending">0</span>
+          <span class="label">⏳ En attente</span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="number" id="statCertified">0</span>
+          <span class="label">🎖️ Certifiés</span>
+        </div>
+        <div class="admin-stat-card">
+          <span class="number" id="statRejected">0</span>
+          <span class="label">❌ Rejetés</span>
+        </div>
+      </div>
+      
+      <!-- ===== TABLEAU ===== -->
+      <div id="adminTableContainer">
+        <div id="loadingSpinner" class="text-center" style="padding: 40px;">
+          <div class="spinner"></div>
+          <p class="text-muted">Chargement...</p>
+        </div>
+        <div id="adminContent" class="hidden">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr>
+                <th>Membre</th>
+                <th>Spécialités</th>
+                <th>Région</th>
+                <th>Niveau</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Rempli par JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL D'APPROBATION ===== -->
+  <div id="approveModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>✅ Approuver la certification</h2>
+      <p id="modalMemberName" class="text-muted"></p>
+      
+      <div class="form-group">
+        <label>Niveau de certification</label>
+        <select id="modalLevel">
+          <option value="apprentice">Apprenti</option>
+          <option value="confirmed">Confirmé</option>
+          <option value="expert">Expert</option>
+          <option value="master">Master</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Notes (optionnel)</label>
+        <textarea id="modalNotes" rows="3" placeholder="Commentaires sur la validation..."></textarea>
+      </div>
+      
+      <div style="display: flex; gap: 12px; justify-content: flex-end;">
+        <button class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+        <button class="btn btn-success" id="modalApproveBtn" onclick="confirmApprove()">✅ Approuver</button>
+        <button class="btn btn-danger" id="modalRejectBtn" onclick="confirmReject()">❌ Rejeter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer style="padding: 40px 20px; border-top: 1px solid var(--color-border); margin-top: 40px;">
+    <div class="container">
+      <div style="text-align: center; font-size: var(--font-size-small); color: var(--color-text-muted);">
+        &copy; 2026 Antennist Cloud Platform - FITA
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
